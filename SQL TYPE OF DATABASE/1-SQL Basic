@@ -1,0 +1,48 @@
+1.List the Empno, Ename, Sal and 3 digit rounded Daily sal of all emps in the asc order of Annsal
+
+ANS:- SELECT EMPNO, ENAME, round (SAL/30,3)"DAILY SAL" FROM EMP ORDER BY SAL 
+  
+  COLUMENAME should not be given  in the cotesan 
+
+2.List the Empno, Ename, Sal of all emps working for Mgr 7369 
+
+ANS:- SELECT EMPNO, ENAME, SAL FROM EMP WHERE MGR=7369
+
+3.Display all the details of the emps whose Comm. Is more than their Sal 
+
+ANS:- SELECT*FROM EMP WHERE SAL<COMM 
+
+4.List the emps who does not belong to Deptno 20 
+
+ANS:- SELECT*FROM EMP WHERE DEPTNO<>20
+
+5.List the empno,ename,sal,deptno of the dept 10 emps in the ascending order of salary.
+
+ANS:- SELECT EMPNO,ENAME,DEPTNO,SAL FROM EMP WHERE DEPTNO=10 ORDER BY SAL ASC
+
+6.List the emps whose annual sal ranging from 23000 to 40000
+
+ANS:- SELECT*FROM EMP WHERE SAL*12   BETWEEN 23000 AND 40000; 
+
+7.List the emps working under the mgrs 7369,7890,7654,7900
+
+ANS:- SELECT*FROM EMP WHERE MGR IN(7369,7890,7654,7900)
+
+8.List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc order of their salary.
+
+ANS:- SELECT*FROM EMP WHERE (JOB='CLERK'OR JOB='ANALYST') ORDER BY SAL DESC
+  
+9.Find the analysts and managers (empno,ename,job,deptno) who’s salary is between 2000to 4000.
+
+ANS:- SELECT EMPNO,ENAME,JOB,DEPTNO,SAL FROM EMP WHERE JOB IN('MANAGER','ANALYST') AND SAL between 2000 and 4000
+
+10.Find the employees (empno,ename,hiredate,sal) who joned after 1982 and whose salary is greater than 1700 order by hiredate
+
+ANS:- SELECT EMPNO,ENAME,HIREDATE,SAL FROM EMP WHERE HIREDATE>'31-DEC-82' AND SAL>1700 ORDER BY HIREDATE 
+
+11.	Find out the all salesman and analyst who belong from deptno 10 or 20 and whose salary
+is between 1500 to 2800.
+
+ANS:- SELECT*FROM EMP WHERE JOB IN('SALESMAN','ANALYST')  AND (DEPTNO=10 OR DEPTNO=20)AND SAL BETWEEN 1500 and 2800
+
+

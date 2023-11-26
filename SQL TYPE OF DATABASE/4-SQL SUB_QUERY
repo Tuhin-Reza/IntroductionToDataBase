@@ -1,0 +1,49 @@
+1)Show the details of the min salary holder of the employee table.
+
+ANS:- SELECT*FROM EMP WHERE SAL=(SELECT MIN(SAL)FROM EMP)
+
+2)Find the details of the most senior employee.
+
+ANS:- SELECT*FROM EMP WHERE HIREDATE=(SELECT MIN(HIREDATE)FROM EMP)
+
+3)Select all the employees who are earning same as BLAKE.
+
+ANS:- SELECT*FROM EMP WHERE SAL=(SELECT SAL FROM EMP WHERE ENAME='BLACK')
+
+4)Display all the employees who have joined after FORD
+  
+ANS:- SELECT*FROM EMP WHERE HIREDATE>(SELECT HIREDATE FROM EMP WHERE ENAME='FORD')
+
+5)List all the employees who are earning more than SMITH and less then KING.
+
+ANS:- SELECT*FROM EMP WHERE SAL BETWEEN (SELECT SAL FROM EMP WHERE ENAME='SMITH')AND (SELECT SAL FROM EMP WHERE ENAME='KING')
+
+6)Find the employees who work in the same department with BLAKE
+
+ANS:- SELECT*FROM EMP WHERE DEPTNO=(SELECT DEPTNO FROM EMP WHERE ENAME='BLAKE')
+
+7)Display all the salesmen who are not located at DALLAS.
+
+ANS:- SELECT*FROM EMP WHERE JOB ='SALESMAN'AND DEPTNO<>(SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS')
+
+8)Select department name & location of all the employees working for CLARK.
+
+ANS:- SELECT DNAME,LOC FROM DEPT WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='CLARK'))
+
+9)Select all the departmental information for all the managers.
+
+ANS:- SELECT*FROM DEPT WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE JOB='MANAGER')
+
+10)Display all the managers & clerks who work in Accounts and Marketing departments.
+
+ANS:- SELECT*FROM EMP WHERE JOB IN('MANAGER','CLERK') AND DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE DNAME IN ('ACCOUNTS'',MARKETING'))
+
+11)Select all the employees who work in DALLAS.
+
+ANS:- SELECT ENAME FROM EMP WHERE DEPTNO IN(SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS')
+
+
+
+
+
+

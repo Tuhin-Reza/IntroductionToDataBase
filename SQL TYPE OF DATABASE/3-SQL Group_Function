@@ -1,0 +1,50 @@
+1)Display all the employees who total salary is more than 2000.
+(Total Salary = Sal + Comm)
+
+    SELECT*FROM EMP WHERE SAL+COMM>2000(Wrong)
+	Because(Null+Any Integer Number)=0
+	        Null+3=0 So the ststement is wrong.Correct Statement given below
+ANS:- SELECT*FROM  EMP WHERE SAL+NVL(COMM,0)>2000
+	
+2)Find out the most junior and the most senior employee’s joining date in a single query.
+
+ANS:- SELECT MAX(HIREDATE),MIN(HIREDATE) FROM EMP 
+
+3)Find out the job wise  total salaries.
+
+ANS:- SELECT JOB, SUM(SAL) FROM EMP GROUP BY JOB
+
+4)Display the average salary of all CLERKS and ANALYST who belong from deptno 10 and 20.
+
+ANS:- SELECT AVG(SAL)FROM EMP WHERE JOB IN('CLERKS','ANALYST') AND DEPTNO IN(10,20)
+ 
+5)Display total,average salaries for the employees whose employee number is not from 7288 to 7790.
+
+ANS:- SELECT SUM(SAL),AVG(SAL) FROM EMP WHERE EMPNO NOT IN (7288,7790) 
+       SELECT SUM(SAL),AVG(SAL) FROM EMP WHERE EMPNO<>(7288,7790)    
+
+6)Display total salaries for all the Managers and Analysts, only if the individual got more than 2000 will be considered.
+
+ANS:- SELECT SUM(SAL) FROM EMP WHERE JOB IN('MANAGER','ANALYSTS')AND SAL>2000
+
+7)Find out the number of ANALYST we have.
+
+ANS:- SELECT COUNT(*)FROM EMP WHERE JOB='ANALYST'
+      SELECT COUNT(JOB)FROM EMP WHERE JOB='ANALYST'
+      SELECT COUNT('ANALYST')FROM EMP WHERE JOB='ANALYST'
+
+
+8)Find out the number of manager and analyst. (Department wise)
+
+ANS:- SELECT DEPTNO,COUNT(JOB) FROM EMP WHERE JOB IN ('MANAGER','ANALYST') GROUP BY DEPTNO
+      SELECT DEPTNO,COUNT('MANAGER''ANALYST') FROM EMP WHERE JOB IN ('MANAGER','ANALYST') GROUP BY DEPTNO
+
+9)Show the department wise employee numbers, only if the department have less than 3 employees
+  
+ANS:- SELECT DEPTNO,COUNT(EMPNO)FROM EMP GROUP BY DEPTNO HAVING COUNT(*)<3
+
+10)Find out the department who has more than 3 managerss.
+
+ANS:- SELECT DEPTNO,COUNT('DEPTNO')FROM EMP where job='MANAGER'GROUP BY DEPTNO HAVING COUNT(*)>3
+      SELECT*FROM DEPT WHERE DEPTNO IN (SELECT DEPTNO FROM EMP where job='MANAGER'GROUP BY DEPTNO HAVING COUNT(*)>3)
+  

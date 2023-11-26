@@ -1,0 +1,21 @@
+1)Display all the Employees whose name  start with A
+
+ANS:- SELECT*FROM EMP WHERE ENAME LIKE ('A%')
+
+2)Display all the Employees whose name  start with B and end with E 
+
+ANS:- SELECT*FROM EMP WHERE ENAME LIKE ('B%E')
+
+3)Display all the Employees whose name’s 2nd character is L and 2nd last character is K
+
+ANS:- SELECT*FROM EMP WHERE ENAME LIKE ('_L%K_')
+
+4)Display all the managers whose name doesn't start with A & S
+
+ANS:- SELECT*FROM EMP WHERE JOB='MANAGER' AND (ENAME NOT LIKE'A%' AND ENAME NOT LIKE'S%')
+
+5)Display all the Employees whose name  who’s job start with S
+
+ANS:- SELECT*FROM EMP WHERE JOB LIKE ('S%')
+  
+

@@ -1,0 +1,74 @@
+1.List the emps who are not working in CHICAGO and gets a commission. 
+
+ANS:- SELECT*FROM EMP WHERE COMM IS NOT NULL AND DEPTNO<>(SELECT DEPTNO FROM DEPT WHERE LOC ='CHICAGO')
+  
+2.List the names of job. Where atleast3 are working in that job
+
+ANS:- SELECT JOB ,COUNT(JOB)FROM EMP GROUP BY JOB HAVING COUNT(*)>=3
+  SELECT JOB ,COUNT(*)FROM EMP GROUP BY JOB HAVING COUNT(*)>=3
+ 
+3.List the details of most recently hired emp of dept 30
+
+ANS:- SELECT*FROM EMP WHERE DEPTNO=30 AND HIREDATE=(SELECT MAX(HIREDATE)FROM EMP WHERE DEPTNO=30)
+  
+4.Select department name & location of all the employees who gets a commission.
+
+ANS:- SELECT DNAME,LOC FROM DEPT WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE COMM IS NOT NULL)
+
+5.Find the total annual sal to distribute job wise in the year 1982.
+
+ANS:- SELECT JOB,SUM(SAL*12)FROM EMP WHERE HIREDATE BETWEEN '01-DEC-82' AND '31-DEC-82' GROUP BY JOB
+
+  SELECT JOB,SUM(SAL*12)FROM EMP WHERE TO_CHAR (HIREDATE,'YYYY')= 1982 GROUP BY JOB
+  To_month(hiredate,’MON’)
+  To_month(hiredate,’MON-YYYY’)
+
+6.Find out the MANAGER and ANALYST who are working for KING.
+
+ANS:- SELECT* FROM EMP WHERE JOB IN('MANAGER','ANALYST') AND MGR=(SELECT EMPNO FROM EMP WHERE ENAME='KING')
+ 
+7.List the emps who’s Jobs are same as ALLEN. Exclude the ALLEN’s details.
+
+ANS:- SELECT*FROM EMP WHERE JOB=(SELECT JOB FROM EMP WHERE ENAME='ALLEN') AND ENAME<>'ALLEN'
+  
+8.List the emps with departmental information Whose Jobs are same as BLAKE or ALLEN whose or Sal is more than FORD.
+  
+ANS:- SELECT*FROM EMP WHERE JOB IN(SELECT JOB FROM EMP WHERE (ENAME='BLACK'OR  ENAME='ALLEN') OR SAL>(SELECT SAL FROM EMP WHERE ENAME='FORD'))
+  
+9.Find the highest paid employee of sales department.
+ 
+ANS:- SELECT*FROM EMP WHERE SAL=(SELECT MAX(SAL)FROM EMP WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE DNAME='SALES'))
+
+10.List the highest paid emp working under king.
+
+ANS:- SELECT*FROM EMP WHERE SAL=(SELECT MAX(SAL)FROM EMP WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='KING'))
+  
+11.Find the details of the 2nd highest salary holder.
+
+ANS:- SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP ))
+
+12.Find the details of the 3rd lowest salary holder.
+
+ANS:- SELECT * FROM EMP WHERE SAL=(SELECT MIN(SAL) FROM EMP WHERE SAL>(SELECT MIN(SAL) FROM EMP WHERE 
+SAL>(SELECT MIN(SAL) FROM EMP )))
+  
+13.Find out the department where at least 2 MANAGERS are working
+
+ANS:- SELECT DEPTNO,COUNT('DEPTNO')FROM EMP where job='MANAGER'GROUP BY DEPTNO HAVING COUNT(*)>=2
+
+14.Find out the total salaries of CLERKs and ANALYSTs where each individual get more 
+than 1000
+
+ANS:- SELECT SUM(SAL) FROM EMP WHERE JOB IN('CLERK','ANALYST') AND SAL>1000
+86
+
+
+15.Find the location where maximum number of employee is located 
+
+ANS:- Select loc from dept where deptno=(Select deptno from emp group by deptno having count(*)
+=(Select max(count(*)) from emp group by deptno))
+
+
+
+
+
