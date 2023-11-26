@@ -1,0 +1,64 @@
+ 1. ORDER
+(Menu_ID,Food_name,price, cus_ID,  cus_name,   cus_add,  cus_phone,  order_no,order_type,ord_F_name,quantity,bill)
+                   
+1NF : quantity,cus_phone,ord_F_name is the multivalued attribute.
+
+2NF:      cus_ID,cus_name,cus_add,cus_phone;                         
+          Menu_ID,Food_name, price;
+          order_no,order_type,ord_F_name,quantity,bill;
+
+3NF :    Menu_ID,Food_name;
+         Food_name, price;                    
+         order_no,order_type;
+         ord_F_name,quantity,bill;
+
+Table for prepared by:
+cus_ID,cus_name,cus_add,cus_phone;
+Menu_ID,Food_name;
+Food_name,price;                    
+order_no,order_type;
+order_no,ord_F_name ,quantity,bill;
+
+2. Employee_information(emp_id,emp_name,emp_phone,reg_no,veh_type)
+
+1NF: emp_phone  is the multivalued attribute.
+
+2NF: emp_id,emp_name, emp_phone;
+     reg_no,veh_type;
+
+3NF : No transitive dependency.
+          emp_id,emp_name, emp_phone;
+          reg_no,veh_type;
+
+Table for prepared by:
+emp_id,emp_name, emp_phone;
+reg_no,veh_type, emp_id;
+
+
+3. Payment (cus_ID,cus_name,cus_add,cus_phone,pay_id,type,bill)  
+
+1NF: cus_phone is the multivalued attribute.
+
+2NF: cus_ID,  cus_name,   cus_add,  cus_phone;
+      pay_id , type, bill;
+
+3NF: No transitive dependency.
+
+Table for prepared by:
+
+cus_ID, pay_id , type, bill;
+
+Final_Table :
+
+Customer=cus_ID,cus_name,cus_add,cus_phone,order_no
+Menu=Menu_ID,Food_name,price    
+Order=order_no,order_type,ord_F_name,Menu_ID
+Bill=cus_id,order_no,bill
+Employee = emp_id,emp_name,emp_phone
+Delivery =cus_id,emp_id,veh_type,reg_no,,
+payment = cus_ID, pay_id ,type,bill;
+
+
+
+
+

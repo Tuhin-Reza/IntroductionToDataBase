@@ -1,0 +1,71 @@
+QUESTIONS/QUERIES:
+
+1. Display the customer name and order from Customer table
+
+SELECT C_NAME,ORDERNO FROM CUSTOMER
+ 
+
+2. Display the  menu table 
+
+SELECT *FROM MENU
+ 
+3. Display the orders which are only in house
+
+SELECT DISTINCT ORDER_T.* FROM ORDER_T,"ORDER" WHERE "ORDER".ORDER_NO=ORDER_T.ORDER_NO AND ORDER_T.ORDER_TYPE='IN HOUSE'
+ 
+
+4. Display order number, food name and quantity from order table
+
+SELECT ORDER_NO,FOOD_NAME,QUANTITY FROM "ORDER" 
+
+ 
+5. Perform an equijoin and Display Customer ID, Order Type and Bill
+
+SELECT C_ID,ORDER_TYPE,BILL FROM ORDER_T,BILL WHERE ORDER_T.ORDER_NO =BILL.ORDER_NO
+ 
+
+6. Perform an equijoin between Employee table and Delivery table and show the Employee details and information of those who have been assigned vehicles for delivery
+
+SELECT EMPLOYEE.*,REG_NO,VEHICLE_TYPE FROM EMPLOYEE,DELIVERY WHERE EMPLOYEE.E_ID=DELIVERY.E_ID
+ 
+
+7. Display the food name order number of customers who ordered more than one item, using group function
+
+select FOOD_NAME,count(*) from "ORDER" group by FOOD_NAME HAVING COUNT(*)>1
+ 
+
+8. Perform an equijoin between Order table and Bill table and show total bill of those who ordered sub and sandwich
+
+SELECT DISTINCT BILL.* FROM "ORDER",BILL WHERE BILL.ORDER_NO ="ORDER".ORDER_NO AND FOOD_NAME IN('SUB','SANDWICH')
+ 
+ 
+9. Show the customer details of the customers who ordered max       quantity
+
+SELECT CUSTOMER.* FROM CUSTOMER,"ORDER" WHERE CUSTOMER.ORDERNO="ORDER".ORDER_NO
+AND QUANTITY=(SELECT MAX(QUANTITY)FROM "ORDER")
+
+ 
+
+
+
+10. Show the customer name,order type details of the customer  who paid the 2nd highest bill
+
+SELECT C_NAME,ORDER_T.* FROM CUSTOMER,ORDER_T WHERE CUSTOMER.ORDERNO=ORDER_T.ORDER_NO AND  
+ORDER_NO=(SELECT ORDER_NO FROM BILL WHERE BILL=(SELECT MAX(BILL) FROM BILL WHERE BILL<(SELECT MAX(BILL) FROM BILL )))
+ 
+
+
+
+11. Show the customer information,order type and  payment information of the customers who paid using bKash or Nogod and 3rd lowest bill.
+
+SELECT CUSTOMER.*,ORDER_TYPE,PAY_ID,PAY_TYPE,BILL FROM CUSTOMER,PAYMENT,ORDER_T WHERE CUSTOMER.ORDERNO=ORDER_T.ORDER_NO AND CUSTOMER.C_ID=PAYMENT.C_ID AND
+CUSTOMER.C_ID=(SELECT C_ID FROM PAYMENT WHERE PAY_TYPE IN ('BKASH','NOGOD') AND BILL=(SELECT MIN(BILL) FROM BILL WHERE BILL>(SELECT MIN(BILL) FROM BILL WHERE 
+BILL>(SELECT MIN(BILL) FROM BILL ))))
+
+ 
+
+TASKS AMONG MEMBERS:
+1. Tuhin bhai: DBMS creation and execution, Normalization
+2. Sakib: Composition, Table Create & Data Insert Queries
+3. Suha: Normalization, Queries & Commands (requested bonus marks)
+4. Simanto: kisu na
